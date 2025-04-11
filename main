@@ -1,0 +1,72 @@
+import random
+
+from Day6 import word_list,logo,stages
+
+print(logo)
+
+
+
+chosen_word_final = random.choice(word_list)
+#print(chosen_word_final)
+word_len = len(chosen_word_final)
+place_holder = ""
+correct_letterz = []
+lives = int(6)
+    
+
+game_over = False
+
+for n in range(word_len):
+    place_holder += "_"
+print(place_holder)
+
+
+while game_over is False:
+    guess = input("Guess a letter: ").lower()
+    display = ""
+
+    if guess in correct_letterz:
+
+        print("You already guessed that letter")
+    for letter in chosen_word_final:
+        if letter == guess:
+            display += letter
+            correct_letterz.append(guess)
+        elif letter in correct_letterz:
+            display += letter
+        else:
+            display += "_"
+
+
+    if guess not in chosen_word_final:
+        lives -= 1
+        if lives == 0:
+            game_over = True
+            print(f"***** THE CORRECT WORD WAS ({chosen_word_final}) ***** YOU LOSE *****")
+        print(f"*****YOU HAVE {lives} MORE TRIES******")
+
+
+    elif "_" not in display and lives != 0:
+        game_over = True
+        print("*****You win*****")
+
+
+    print(display)
+    print(stages[lives])
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
